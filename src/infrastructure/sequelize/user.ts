@@ -1,6 +1,6 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
-import { IUser as UserAttributes } from '../../domain/entities';
+import { IUser as UserAttributes } from '../../domain/user';
 
 export type UserPk = "id";
 export type UserId = User[UserPk];
