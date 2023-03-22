@@ -2,6 +2,9 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { ApolloServer } from 'apollo-server-express'
 import { GraphQLSchema } from 'graphql'
+import { makeExecutableSchema } from '@graphql-tools/schema'
+import typeDefs from '../graph/schema'
+import resolvers from '../graph/resolvers'
 
 dotenv.config()
 
@@ -9,10 +12,13 @@ const app = express()
 
 const PORT = process.env.PORT || 4000
 
-const tempSchema: GraphQLSchema = new GraphQLSchema({})
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+})
  
 const server = new ApolloServer({
-  schema: tempSchema,
+  schema,
   introspection: true,
 })
 
