@@ -3,8 +3,8 @@ import dotenv from 'dotenv'
 import { ApolloServer } from 'apollo-server-express'
 import { GraphQLSchema } from 'graphql'
 import { makeExecutableSchema } from '@graphql-tools/schema'
-import typeDefs from '../graph/schema'
-import resolvers from '../graph/resolvers'
+import typeDefs from './graph/schema'
+import resolvers from './graph/resolvers'
 
 dotenv.config()
 
