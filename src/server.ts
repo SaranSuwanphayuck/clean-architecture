@@ -5,6 +5,7 @@ import { GraphQLSchema } from 'graphql'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import typeDefs from './infrastructure/graph/schema'
 import resolvers from './infrastructure/graph/resolvers'
+import models from './infrastructure/sequelize'
 
 dotenv.config()
 
@@ -37,6 +38,7 @@ server.start().then(() => {
 })
 
 try {
+  models.initModels()
   app.listen(PORT, () => {
     console.info(`SERVER START ON PORT ${PORT}`)
   })  

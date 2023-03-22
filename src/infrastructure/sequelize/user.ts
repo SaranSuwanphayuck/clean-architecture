@@ -1,12 +1,13 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
-import { IUser as UserAttributes } from '../../domain/user';
+import { IUser } from '../../domain/user';
+
+export interface UserAttributes extends IUser {}
 
 export type UserPk = "id";
 export type UserId = User[UserPk];
 export type UserOptionalAttributes = "id" | "name" | "email" | "password" | "address";
 export type UserCreationAttributes = Optional<UserAttributes, UserOptionalAttributes>;
-
 export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
   id!: number;
   name?: string;

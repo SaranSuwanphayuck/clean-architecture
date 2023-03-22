@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize'
 import dotenv from 'dotenv'
+import * as models from './init-models'
 dotenv.config()
 
 const sequelize = new Sequelize(
@@ -13,5 +14,12 @@ const sequelize = new Sequelize(
     logging: false
   }
 )
+
+export default {
+  ...models,
+  initModels: () => models.initModels(sequelize),
+  sequelize,
+  Sequelize
+}
 
 export { sequelize }
