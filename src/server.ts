@@ -1,7 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { ApolloServer } from 'apollo-server-express'
-import { GraphQLSchema } from 'graphql'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import typeDefs from './infrastructure/graph/schema'
 import resolvers from './infrastructure/graph/resolvers'
