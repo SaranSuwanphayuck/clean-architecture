@@ -1,8 +1,12 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
 import { IUser } from '../../domain/user';
+import { ICreateUser } from '../../interface/use-case/user';
 
-export interface UserAttributes extends IUser {}
+export interface UserAttributes extends IUser {
+  createdAt?: Date
+  updatedAt?: Date
+}
 
 export type UserPk = "id";
 export type UserId = User[UserPk];
@@ -14,6 +18,8 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
   email?: string;
   password?: string;
   address?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof User {
@@ -39,6 +45,14 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     address: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   }, {
     sequelize,
@@ -56,4 +70,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     ]
   });
   }
+}
+
+
+export const createUser =  async (input: ICreateUser) => { 
+  await User.create(input)
+  return
 }
