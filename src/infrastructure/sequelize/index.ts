@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
 import dotenv from 'dotenv'
-import * as models from './init-models'
+import * as models from '../../domain/models/init-models'
 dotenv.config()
 
 const sequelize = new Sequelize(

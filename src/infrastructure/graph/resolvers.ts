@@ -1,5 +1,5 @@
-import { createUser as createUserInteract, ICreateUser } from "../../interface/use-case/user"
-import { createUser as createUserInfra } from '../sequelize/init-models'
+import { CreateUserInput } from "../../interface/user"
+import { createUser as createUserInteractor } from "../../use-case/user"
 
 interface GeneralPayload {
   message?: string
@@ -7,9 +7,10 @@ interface GeneralPayload {
   error?: string
 }
 
-const createUser = async (input: ICreateUser): Promise<GeneralPayload> => {
+const createUser = async (args: { input: CreateUserInput }): Promise<GeneralPayload> => {
   try {
-    await createUserInteract(input, createUserInfra)
+    const { input } = args
+    await createUserInteractor(input)
     return { message: 'OK', code: 201 }
   } catch (err: any) {
     return { error: err.message, code: 500 }

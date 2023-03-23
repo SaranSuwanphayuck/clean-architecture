@@ -1,8 +1,12 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
-import { IUser } from '../../domain/user';
 
-export interface UserAttributes extends IUser {
+export interface UserAttributes {
+  id: number
+  name?: string
+  address?: string
+  email?: string
+  password?: string
   createdAt?: Date
   updatedAt?: Date
 }
