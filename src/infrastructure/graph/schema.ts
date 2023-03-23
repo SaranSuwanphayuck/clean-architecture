@@ -8,10 +8,19 @@ export default gql`
     password: String!    
   }
 
-  type GeneralPayload {
+  type StatusPayload {
     code: Int
     message: String
     error: String
+  }
+
+  type DataPayload {
+    data: [User]
+    status: StatusPayload
+  }
+
+  type GeneralPayload {
+    status: StatusPayload
   }
 
   type User {
@@ -23,7 +32,7 @@ export default gql`
   }
   
   type Query {
-    users: [User]    
+    users: DataPayload   
   }
 
   type Mutation {
