@@ -1,7 +1,6 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
 import { IUser } from '../../domain/user';
-import { ICreateUser } from '../../interface/use-case/user';
 
 export interface UserAttributes extends IUser {
   createdAt?: Date
@@ -70,10 +69,4 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     ]
   });
   }
-}
-
-
-export const createUser =  async (input: ICreateUser) => { 
-  await User.create(input)
-  return
 }

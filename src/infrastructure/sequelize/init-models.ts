@@ -1,6 +1,7 @@
 import type { Sequelize } from "sequelize";
 import { User as _User } from "./user";
 import type { UserAttributes, UserCreationAttributes } from "./user";
+import { ICreateUser } from "../../interface/use-case/user";
 
 export {
   _User as User,
@@ -18,4 +19,9 @@ export function initModels(sequelize: Sequelize) {
   return {
     User: User,
   };
+}
+
+export const createUser =  async (input: ICreateUser) => { 
+  await _User.create(input)
+  return
 }
