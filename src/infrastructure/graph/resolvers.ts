@@ -7,8 +7,9 @@ interface GeneralPayload {
   error?: string
 }
 
-const createUser = async (input: ICreateUser): Promise<GeneralPayload> => {
+const createUser = async (_: unknown, args: {input: ICreateUser}): Promise<GeneralPayload> => {
   try {
+    const { input } = args
     await createUserInteract(input, createUserInfra)
     return { message: 'OK', code: 201 }
   } catch (err: any) {
