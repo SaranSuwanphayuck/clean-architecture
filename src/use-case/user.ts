@@ -1,6 +1,10 @@
 import { MailServiceInfrastructure } from '../infrastructure/mail-service'
 import MailService from '../domain/email'
+import { DomainError } from '../domain'
 import { UserRepository, CreateUserInput } from '../interface/user'
+import { RepositoryError } from '../interface'
+import { UseCaseError } from '.'
+
 
 export const createUser = async (input: CreateUserInput) => {
   try {
@@ -12,7 +16,11 @@ export const createUser = async (input: CreateUserInput) => {
 
     return
   } catch (err: any) {
-    throw err
+    if (err instanceof DomainError || err instanceof RepositoryError) {
+      throw err
+    } else {
+      throw new UseCaseError(err.message)
+    }
   }
 }
 
@@ -23,6 +31,10 @@ export const users = async (name?: string) => {
 
     return users
   } catch (err: any) {
-    throw err
+    if (err instanceof DomainError || err instanceof RepositoryError) {
+      throw err
+    } else {
+      throw new UseCaseError(err.message)
+    }
   }
 }

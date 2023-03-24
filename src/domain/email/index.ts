@@ -1,3 +1,5 @@
+import { CustomError, DomainError } from "..";
+
 export interface SendMailInput {
   to: string
   subject: string
@@ -13,11 +15,19 @@ class MailService {
   }
 
   async sendCreateUserEmail (to: string) {
-    await this.sendMail({
-      to,
-      subject: 'User created successfullly!',
-      html: `<p> Hello from clean architecture </p>`,
-    })
+    try {
+      await this.sendMail({
+        to,
+        subject: 'User created successfullly!',
+        html: `<p> Hello from clean architecture </p>`,
+      })
+    } catch (err: any) {
+      if (err instanceof CustomError) {
+        throw err
+      } else {
+        throw new DomainError(err.message)
+      }
+    }
   }
 } 
 

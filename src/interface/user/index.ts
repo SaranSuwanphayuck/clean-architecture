@@ -3,5 +3,5 @@ import { CreateUserInput } from './interface'
 
 export {
   UserRepository,
-  CreateUserInput
+  CreateUserInput,
 }

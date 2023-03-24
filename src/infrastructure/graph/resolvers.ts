@@ -26,6 +26,7 @@ const createUser = async (_: unknown, args: CreateUserArgs): Promise<GeneralPayl
     await createUserInteractor(input)
     return { status: { message: 'OK', code: 201 } }
   } catch (err: any) {
+    console.log(err.name)
     return { status: { error: err.message, code: 500 } }
   }
 }
@@ -35,6 +36,7 @@ const users = async (_: unknown): Promise<DataPayload> => {
     const users = await usersInteractor('')
     return { data: users, status: { code: 200, message: 'OK' } }
   } catch (err: any) {
+    console.log(err.name)
     return { data: null, status: { error: err.message, code: 500 } }
   }
 }
