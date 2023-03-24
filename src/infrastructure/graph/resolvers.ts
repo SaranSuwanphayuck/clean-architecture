@@ -1,5 +1,5 @@
 import { User } from "../../domain/models/init-models"
-import { CreateUserInput } from "../../interface/user"
+import { CreateUserInput } from "../../repository/user"
 import { createUser as createUserInteractor, users as usersInteractor } from "../../use-case/user"
 
 interface StatusPayload {

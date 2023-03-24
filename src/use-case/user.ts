@@ -1,8 +1,8 @@
 import { MailServiceInfrastructure } from '../infrastructure/mail-service'
 import MailService from '../domain/email'
 import { DomainError } from '../domain'
-import { UserRepository, CreateUserInput } from '../interface/user'
-import { RepositoryError } from '../interface'
+import { UserRepository, CreateUserInput } from '../repository/user'
+import { RepositoryError } from '../repository'
 import { UseCaseError } from '.'
 
 
