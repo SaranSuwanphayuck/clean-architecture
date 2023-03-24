@@ -1,7 +1,9 @@
 import nodemailer from 'nodemailer'
-import { SendMailInput } from '../../interface/email';
+import { SendMailInput } from '../../domain/email';
 import { google } from 'googleapis' 
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
+import dotenv from 'dotenv'
+dotenv.config()
 
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
@@ -31,5 +33,6 @@ export const sendMail = async (input: SendMailInput) => {
     } 
   } as SMTPTransport.Options)
 
+  await transporter.sendMail(mailOptions)
   return
 }

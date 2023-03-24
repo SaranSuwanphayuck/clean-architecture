@@ -6,14 +6,14 @@ export interface SendMailInput {
 
 class MailService {
   
-  sendMail: (input: SendMailInput) => void;
+  sendMail: (input: SendMailInput) => Promise<void>;
 
   constructor (service: any) {
     this.sendMail = service.sendMail
   }
 
-  sendCreateUserEmail (to: string) {
-    this.sendMail({
+  async sendCreateUserEmail (to: string) {
+    await this.sendMail({
       to,
       subject: 'User created successfullly!',
       html: `<p> Hello from clean architecture </p>`,
